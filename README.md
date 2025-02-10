@@ -1,6 +1,6 @@
 # Mistral AI Chat
 
-Mistral AI Chat is a simple command-line interface for interacting with an AI model. It allows users to type messages and receive responses from the AI. The chat can be ended by typing 'exit'.
+Mistral AI Chat is a simple command-line interface for interacting with Mistral's large language models. It provides a clean interface for chatting with Mistral AI models like Mistral-7B, Mixtral-8x7B, or other Mistral-based models. The chat can be ended by typing 'exit'.
 
 ## Author
 
@@ -57,9 +57,9 @@ python main.py
 
 The `config.py` file should contain the following variables:
 
-- `API_KEY`: Your API key for the AI service.
-- `MODEL`: The AI model you want to use.
-- `API_URL`: The URL of the AI service API.
+- `API_KEY`: Your Mistral API key from platform.mistral.ai/api-keys
+- `MODEL`: The Mistral model you want to use (e.g., 'mistral-tiny', 'mistral-small', 'mistral-medium')
+- `API_URL`: The Mistral API endpoint (default: 'https://api.mistral.ai/v1/chat/completions')
 
 ## Contributing
 
