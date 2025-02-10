@@ -2,11 +2,15 @@
 
 Mistral AI Chat is a simple command-line interface for interacting with an AI model. It allows users to type messages and receive responses from the AI. The chat can be ended by typing 'exit'.
 
+## Author
+
+Samuel Morrison
+
 ## Features
 
-- **Colorful Output**: Uses `colorama` to provide colored output for better readability.
+- **Colourful Output**: Uses `colorama` to provide coloured output for better readability.
 - **Text Wrapping**: Automatically wraps long responses to fit the terminal width.
-- **Customizable**: Easily configurable with API key, model, and API URL.
+- **Customisable**: Easily configurable with API key, model, and API URL.
 - **Typewriter Effect**: Adds a typewriter effect to the welcome message.
 - **Version**: v1.0.0
 
@@ -68,7 +72,7 @@ This project is licensed under the MIT License.
 ```
 MIT License
 
-Copyright (c) 2024 
+Copyright (c) 2024 Samuel Morrison
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
