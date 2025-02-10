@@ -24,8 +24,8 @@ Samuel Morrison
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/mistral-ai-chat.git
-    cd mistral-ai-chat
+    git clone https://github.com/samyouel84/mistral-chat.git
+    cd mistral-chat
     ```
 
 2. Install the required Python packages:
