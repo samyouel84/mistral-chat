@@ -41,6 +41,7 @@ Samuel Morrison
     - Edit the `.env` file and add your Mistral API key:
     ```
     MISTRAL_API_KEY=your_api_key_here
+    MISTRAL_MODEL=mistral-medium  # Optional, remove this line to use default model
     ```
 
 ## Usage
@@ -57,11 +58,22 @@ python main.py
 
 ## Configuration
 
-The `.env` file should contain your Mistral API key:
+The `.env` file should contain your Mistral API key and optional model selection:
 
 - `MISTRAL_API_KEY`: Your Mistral API key from platform.mistral.ai/api-keys
+- `MISTRAL_MODEL`: (Optional) The Mistral model you want to use. Available options:
+  - `mistral-tiny`: Fastest, good for simple tasks
+  - `mistral-small`: Balanced speed and capability
+  - `mistral-medium`: Most capable model
+  - If not specified, defaults to `mistral-small`
 
-The application uses the Mistral API endpoint (https://api.mistral.ai/v1/chat/completions) and automatically selects the appropriate model.
+Example `.env` file:
+```
+MISTRAL_API_KEY=your_api_key_here
+MISTRAL_MODEL=mistral-medium  # Optional, remove this line to use default model
+```
+
+The application uses the Mistral API endpoint (https://api.mistral.ai/v1/chat/completions).
 
 ## Contributing
 
