@@ -34,12 +34,13 @@ Samuel Morrison
     ```
 
 3. Set up your configuration:
-    - Create a `config.py` file in the project root.
-    - Add your API key, model, and API URL to the `config.py` file:
-    ```python
-    API_KEY = 'your_api_key_here'
-    MODEL = 'your_model_here'
-    API_URL = 'your_api_url_here'
+    - Copy the `.env.example` file to `.env`:
+    ```sh
+    cp .env.example .env
+    ```
+    - Edit the `.env` file and add your Mistral API key:
+    ```
+    MISTRAL_API_KEY=your_api_key_here
     ```
 
 ## Usage
@@ -52,14 +53,15 @@ python main.py
 - Type your message and press Enter to send it to the AI.
 - The AI's response will be displayed in the terminal.
 - Type 'exit' to end the chat.
+- Type 'clear' to clear the screen.
 
 ## Configuration
 
-The `config.py` file should contain the following variables:
+The `.env` file should contain your Mistral API key:
 
-- `API_KEY`: Your Mistral API key from platform.mistral.ai/api-keys
-- `MODEL`: The Mistral model you want to use (e.g., 'mistral-tiny', 'mistral-small', 'mistral-medium')
-- `API_URL`: The Mistral API endpoint (default: 'https://api.mistral.ai/v1/chat/completions')
+- `MISTRAL_API_KEY`: Your Mistral API key from platform.mistral.ai/api-keys
+
+The application uses the Mistral API endpoint (https://api.mistral.ai/v1/chat/completions) and automatically selects the appropriate model.
 
 ## Contributing
 
