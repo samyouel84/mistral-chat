@@ -60,7 +60,7 @@ python main.py
 
 The `.env` file should contain your Mistral API key and optional model selection:
 
-- `MISTRAL_API_KEY`: Your Mistral API key from platform.mistral.ai/api-keys
+- `MISTRAL_API_KEY`: Your Mistral API key from [platform.mistral.ai/api-keys](https://platform.mistral.ai/api-keys)
 - `MISTRAL_MODEL`: (Optional) The Mistral model you want to use. Available options:
   - `mistral-tiny`: Fastest, good for simple tasks
   - `mistral-small`: Balanced speed and capability
