@@ -1,7 +1,7 @@
 import os
 import requests
 from colorama import Fore, Style, init
-from config import API_KEY, MODEL, API_URL
+from config import MISTRAL_API_KEY as API_KEY, MISTRAL_MODEL as MODEL, API_URL
 import textwrap
 import shutil
 import time
