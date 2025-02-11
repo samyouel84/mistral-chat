@@ -11,72 +11,68 @@ import re
 # Initialize colorama with different settings
 init(autoreset=True, strip=True, convert=True)
 
-def wrap_text_with_indent(text, width=None, subsequent_indent='    '):
+def wrap_text_with_indent(text, width, subsequent_indent='    '):
     """Wrap text with proper indentation for subsequent lines."""
-    if width is None:
-        # Get terminal width, default to 80 if cannot determine
-        width = shutil.get_terminal_size().columns - 2
-
-    # Split into paragraphs
-    paragraphs = text.split('\n\n')
-    wrapped_paragraphs = []
+    lines = text.strip().split('\n')
+    wrapped_lines = []
     
-    for paragraph in paragraphs:
-        lines = paragraph.strip().split('\n')
-        wrapped_lines = []
+    for line in lines:
+        line = line.strip()
+        if not line:
+            wrapped_lines.append('')  # Preserve empty lines
+            continue
+                
+        # Match numbered list items (e.g., "1.", "1)", "1-")
+        number_match = re.match(r'^(\s*\d+(?:\.|\)|\-)?\s*)', line)
         
-        for line in lines:
-            line = line.strip()
-            if not line:
-                continue
-                
-            # Match any number followed by a period
-            number_match = re.match(r'(\d+\.)', line)
+        if number_match:
+            # Get the full number prefix including the period and any spaces
+            prefix = number_match.group(1).rstrip() + ' '  # Ensure single space after prefix
+            rest = line[len(prefix):].strip()
             
-            if number_match:
-                # Get the full number prefix including the period
-                prefix = number_match.group(1) + ' '
-                rest = line[len(prefix):].strip()
-                
-                # Calculate proper indentation based on number width
-                indent = ' ' * len(prefix)
-                
-                if '**' in rest:
-                    # Don't wrap lines with bold markers
-                    wrapped_lines.append(Fore.CYAN + line + Style.RESET_ALL)
-                else:
-                    # Wrap the content after the number
-                    wrapped = textwrap.fill(
-                        rest,
-                        width=width - len(indent),
-                        initial_indent=prefix,
-                        subsequent_indent=indent,
-                        break_long_words=True,
-                        break_on_hyphens=True,
-                        expand_tabs=True,
-                        replace_whitespace=True
-                    )
-                    wrapped_lines.append(wrapped)
+            # Calculate proper indentation based on number width
+            indent = ' ' * len(prefix)
+            
+            if line.startswith(prefix + '**'):
+                # Don't wrap lines that start with bold markers
+                wrapped_lines.append(Fore.CYAN + line + Style.RESET_ALL)
+                if rest.endswith(':'):
+                    # Insert a blank line after headings
+                    wrapped_lines.append('')
             else:
-                # Handle non-numbered lines
-                if '**' in line:
-                    wrapped_lines.append(Fore.CYAN + line + Style.RESET_ALL)
-                else:
-                    wrapped = textwrap.fill(
-                        line,
-                        width=width,
-                        initial_indent='',
-                        subsequent_indent=subsequent_indent,
-                        break_long_words=True,
-                        break_on_hyphens=True,
-                        expand_tabs=True,
-                        replace_whitespace=True
-                    )
-                    wrapped_lines.append(wrapped)
-                    
-        wrapped_paragraphs.append('\n'.join(wrapped_lines))
-    
-    return '\n\n'.join(wrapped_paragraphs)
+                # Wrap the content after the number
+                wrapped = textwrap.fill(
+                    rest,
+                    width=width,
+                    initial_indent=prefix,
+                    subsequent_indent=indent,
+                    break_long_words=True,
+                    break_on_hyphens=True,
+                    expand_tabs=True,
+                    replace_whitespace=True
+                )
+                wrapped_lines.append(wrapped)
+                wrapped_lines.append('')  # Insert a blank line after each list item
+        else:
+            # Handle non-numbered lines
+            if line.startswith('**') and line.endswith('**'):
+                # Preserve bold formatting for entire lines
+                wrapped_lines.append(Fore.CYAN + line + Style.RESET_ALL)
+            else:
+                # Wrap regular lines
+                wrapped_lines.append('')
+                wrapped = textwrap.fill(
+                    line,
+                    width=width,
+                    break_long_words=True,
+                    break_on_hyphens=True,
+                    expand_tabs=True,
+                    replace_whitespace=True
+                )
+                wrapped_lines.append(wrapped)
+                wrapped_lines.append('')  # Insert a blank line after each list item
+                
+    return '\n'.join(wrapped_lines)
 
 def typewriter_effect(text, delay=0.05):
     for char in text:
@@ -116,8 +112,13 @@ def main():
     print()  # Add a blank line for better spacing
 
     while True:
+        # Get terminal width at the start of each loop
+        terminal_width = shutil.get_terminal_size().columns - 2
+        
         user_input = input(Fore.GREEN + "You: " + Style.RESET_ALL)
         user_input_lower = user_input.lower()
+        
+        print()
         
         if user_input_lower in ['exit', 'quit']:
             print(Fore.RED + "Chat ended. Goodbye!" + Style.RESET_ALL)
@@ -129,7 +130,9 @@ def main():
         # Print "Mistral AI:" in cyan
         print(Fore.CYAN + "Mistral AI: " + Style.RESET_ALL)
         response = get_chat_response(user_input)
-        wrapped_response = wrap_text_with_indent(response)
+        
+        # Ensure the response is wrapped according to the terminal width
+        wrapped_response = wrap_text_with_indent(response, terminal_width)
         
         # Print the wrapped response in default color
         print(wrapped_response)
