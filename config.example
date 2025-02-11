@@ -1,2 +1,3 @@
 MISTRAL_API_KEY=your_api_key_here  # Replace with your actual API key
-MISTRAL_MODEL=mistral-medium  # Optional, remove this line to use default model 
+MISTRAL_MODEL=mistral-small  # Optional, remove this line to use default model 
+API_URL = "https://api.mistral.ai/v1/chat/completions"

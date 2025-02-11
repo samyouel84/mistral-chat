@@ -34,14 +34,15 @@ Samuel Morrison
     ```
 
 3. Set up your configuration:
-    - Copy the `.config.example` file to `.config`:
+    - Copy the `.config.example` file to `.config.py`:
     ```sh
-    cp .config.example .config
+    cp .config.example .config.py
     ```
-    - Edit the `.config` file and add your Mistral API key:
-    ```
-    MISTRAL_API_KEY=your_api_key_here
-    MISTRAL_MODEL=mistral-medium  # Optional, remove this line to use default model
+    - Edit the `.config.py` file and add your Mistral API key:
+    ```python
+    MISTRAL_API_KEY = "your_api_key_here"
+    MISTRAL_MODEL = "mistral-medium"  # Optional, remove this line to use default model
+    API_URL = "https://api.mistral.ai/v1/chat/completions"  # Mistral API endpoint
     ```
 
 ## Usage
@@ -58,7 +59,7 @@ python main.py
 
 ## Configuration
 
-The `.config` file should contain your Mistral API key and optional model selection:
+The `.config.py` file should contain your Mistral API key, optional model selection, and API URL:
 
 - `MISTRAL_API_KEY`: Your Mistral API key from [mistral.ai](https://mistral.ai/en)
 - `MISTRAL_MODEL`: (Optional) The Mistral model you want to use. Available options:
@@ -66,11 +67,13 @@ The `.config` file should contain your Mistral API key and optional model select
   - `mistral-small`: Balanced speed and capability
   - `mistral-medium`: Most capable model
   - If not specified, defaults to `mistral-small`
+- `API_URL`: The endpoint for the Mistral API.
 
-Example `.config` file:
-```
-MISTRAL_API_KEY=your_api_key_here
-MISTRAL_MODEL=mistral-medium  # Optional, remove this line to use default model
+Example `.config.py` file:
+```python
+MISTRAL_API_KEY = "your_api_key_here"  # Replace with your actual API key
+MISTRAL_MODEL = "mistral-small"  # Optional, remove this line to use default model
+API_URL = "https://api.mistral.ai/v1/chat/completions"  # Mistral API endpoint
 ```
 
 The application uses the Mistral API endpoint (https://api.mistral.ai/v1/chat/completions).
