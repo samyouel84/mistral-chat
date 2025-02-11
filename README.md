@@ -41,7 +41,7 @@ Samuel Morrison
     - Edit the `config.py` file and add your Mistral API key:
     ```python
     MISTRAL_API_KEY = "your_api_key_here"
-    MISTRAL_MODEL = "mistral-medium"  # Optional, remove this line to use default model
+    MISTRAL_MODEL = "mistral-small"  # Optional, remove this line to use default model
     API_URL = "https://api.mistral.ai/v1/chat/completions"  # Mistral API endpoint
     ```
 
