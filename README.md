@@ -34,11 +34,11 @@ Samuel Morrison
     ```
 
 3. Set up your configuration:
-    - Copy the `.env.example` file to `.env`:
+    - Copy the `.config.example` file to `.config`:
     ```sh
-    cp .env.example .env
+    cp .config.example .config
     ```
-    - Edit the `.env` file and add your Mistral API key:
+    - Edit the `.config` file and add your Mistral API key:
     ```
     MISTRAL_API_KEY=your_api_key_here
     MISTRAL_MODEL=mistral-medium  # Optional, remove this line to use default model
@@ -58,7 +58,7 @@ python main.py
 
 ## Configuration
 
-The `.env` file should contain your Mistral API key and optional model selection:
+The `.config` file should contain your Mistral API key and optional model selection:
 
 - `MISTRAL_API_KEY`: Your Mistral API key from [mistral.ai](https://mistral.ai/en)
 - `MISTRAL_MODEL`: (Optional) The Mistral model you want to use. Available options:
@@ -67,7 +67,7 @@ The `.env` file should contain your Mistral API key and optional model selection
   - `mistral-medium`: Most capable model
   - If not specified, defaults to `mistral-small`
 
-Example `.env` file:
+Example `.config` file:
 ```
 MISTRAL_API_KEY=your_api_key_here
 MISTRAL_MODEL=mistral-medium  # Optional, remove this line to use default model
