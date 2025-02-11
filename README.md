@@ -36,7 +36,7 @@ Samuel Morrison
 3. Set up your configuration:
     - Copy the `config.example` file to `config.py`:
     ```sh
-    cp .config.example .config.py
+    cp config.example config.py
     ```
     - Edit the `config.py` file and add your Mistral API key:
     ```python
