@@ -69,7 +69,7 @@ The `.config.py` file should contain your Mistral API key, optional model select
   - If not specified, defaults to `mistral-small`
 - `API_URL`: The endpoint for the Mistral API.
 
-Example `.config.py` file:
+Example `config.py` file:
 ```python
 MISTRAL_API_KEY = "your_api_key_here"  # Replace with your actual API key
 MISTRAL_MODEL = "mistral-small"  # Optional, remove this line to use default model
