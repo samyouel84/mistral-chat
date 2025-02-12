@@ -52,7 +52,6 @@ def wrap_text_with_indent(text, width, subsequent_indent='    '):
                     replace_whitespace=True
                 )
                 wrapped_lines.append(wrapped)
-                wrapped_lines.append('')  # Insert a blank line after each list item
         else:
             # Handle non-numbered lines
             if line.startswith('**') and line.endswith('**'):
@@ -60,7 +59,6 @@ def wrap_text_with_indent(text, width, subsequent_indent='    '):
                 wrapped_lines.append(Fore.CYAN + line + Style.RESET_ALL)
             else:
                 # Wrap regular lines
-                wrapped_lines.append('')
                 wrapped = textwrap.fill(
                     line,
                     width=width,
@@ -70,7 +68,6 @@ def wrap_text_with_indent(text, width, subsequent_indent='    '):
                     replace_whitespace=True
                 )
                 wrapped_lines.append(wrapped)
-                wrapped_lines.append('')  # Insert a blank line after each list item
                 
     return '\n'.join(wrapped_lines)
 
@@ -136,6 +133,7 @@ def main():
         
         # Print the wrapped response in default color
         print(wrapped_response)
+        print()  # Add extra line break before next user input
 
 if __name__ == "__main__":
     main() 
